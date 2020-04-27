@@ -148,18 +148,18 @@
                                 <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>star</th>
+                                        <th>user_name</th>
                                         <th>评论</th>
-                                        <th>情感倾向</th>
+                                        <!-- <th>情感倾向</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for short in shorts %}
                                         <tr>
                                             <td>{{short.id}}</td>
-                                            <td>{{short.n_star}}</td>
-                                            <td>{{short.short}}</td>
-                                            <td>{{short.sentiment}}</td>
+                                            <td>{{short.user_name}}</td>
+                                            <td>{{short.comment}}</td>
+                                            <!-- <td>{{short.sentiment}}</td> -->
                                         </tr>
                                     {% endfor %}
                                 </tbody>
