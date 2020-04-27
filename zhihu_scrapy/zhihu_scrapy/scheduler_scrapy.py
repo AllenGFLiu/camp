@@ -5,6 +5,6 @@ from apscheduler.schedulers.twisted import TwistedScheduler
 
 process = CrawlerProcess(get_project_settings())
 sched = TwistedScheduler()
-sched.add_job(process.crawl, 'interval', args=[ZhihuSpider], seconds=300)
+sched.add_job(process.crawl, 'interval', args=[ZhihuSpider], seconds=180)
 sched.start()
 process.start(False)    # Do not stop reactor after spider closes

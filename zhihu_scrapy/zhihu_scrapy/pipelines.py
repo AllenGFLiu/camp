@@ -4,7 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-import json
+# import json
 import sqlite3
 # from scrapy.exporters import JsonItemExporter
 from scrapy.exceptions import DropItem
@@ -28,7 +28,7 @@ class ZhihuScrapyPipeline(object):
     def open_spider(self, spider):
         # self.file = open('douban.json', 'ab')
         # self.exporter = JsonItemExporter(self.file, encoding='utf-8')
-        self.conn = sqlite3.connect(self.sqlite_file)
+        self.conn = sqlite3.connect(self.sqlite_file, check_same_thread=False)
         self.cur = self.conn.cursor()
         # self.exporter.start_exporting()
 
@@ -44,13 +44,14 @@ class ZhihuScrapyPipeline(object):
         #     self.ids_seen.add(item['id'])
         #     self.exporter.export_item(item)
         #     return item
-        check_sql = 'select id from ? where id = ?'
-        self.cur.execute(check_sql, [self.sqlite_table, item['id']])
+        print(item['id'] + ' ' + item['user_name'])
+        check_sql = 'select id from zhihu_comment where id=?'
+        self.cur.execute(check_sql, (item['id'],))
         if self.cur.fetchone():
             raise DropItem('Duplicate item found: %s' % item)
         else:
-            insert_sql = 'insert into ? values (?, ?, ?)'
-            self.cur.execute(insert_sql, [self.sqlite_table, item['id'], item['user_name'], item['content']])
+            insert_sql = 'insert into zhihu_comment(id, user_name, comment) values (?, ?, ?)'
+            self.cur.execute(insert_sql, (item['id'], item['user_name'], item['content']))
             self.conn.commit()
 
             return item

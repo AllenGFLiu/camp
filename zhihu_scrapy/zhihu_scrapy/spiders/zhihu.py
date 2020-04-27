@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import scrapy
-# import sys
-# sys.path.append('..')
-# from items import ZhihuScrapyItem
-from zhihu_scrapy.items import ZhihuScrapyItem
+import sys
+sys.path.append('..')
+from items import ZhihuScrapyItem
+# from zhihu_scrapy.items import ZhihuScrapyItem
 
 
 class ZhihuSpider(scrapy.Spider):

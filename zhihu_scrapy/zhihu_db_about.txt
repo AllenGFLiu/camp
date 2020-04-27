@@ -1,0 +1,2 @@
+camp/zhihu_scrapy/zhihu.db是运行scheduler_scrapy.py文件时产生的sqlite数据库文件。
+camp/zhihu_scrapy/zhihu_scrapy/zhihu.db是运行scrapy crawl zhihu时产生的sqlite数据库文件。
